@@ -2,4 +2,7 @@
 
 (b/build
   "src"
-  { :output-to "out/main.js"})
+  {
+   :main 'todo.main
+   :output-to "out/main.js"
+   :target :nodejs})
