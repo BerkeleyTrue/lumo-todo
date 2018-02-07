@@ -1,16 +1,15 @@
 (ns todo.main
   (:require
     [todo.ring.core :refer [run]]
-    [todo.ring.utils.response :as r]))
+    [todo.ring.utils.response :as r]
+    [todo.router.core :refer [GET]]))
 
 (enable-console-print!)
 
-(defn handler
-  ; the main request handler
-  [{:keys [uri]}]
-  (do
-    (println "Request coming from uri: " uri)
-    (r/response "Hello Berks")))
-
-(run handler
-     {:port 3000})
+(run
+  (GET "/"
+   (fn []
+     (do
+       (println "foo")
+       (r/response "Hello Berks"))))
+  {:port 3000})
