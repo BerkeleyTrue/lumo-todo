@@ -5,8 +5,18 @@
   "main": "index.js",
   "scripts": {
     "build": "lumo ./build.cljs",
-    "watch": "../actual/build/lumo watch.cljs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm run watch-cljs & npm run watch-server",
+    "watch-cljs": "../actual/build/lumo watch.cljs",
+    "watch-server": "nodemon out/main.js"
+  },
+  "nodemonConfig": {
+    "delay": 500,
+    "ext": "js, cljs",
+    "watch": [
+      "out/**/*.js",
+      "out/**/*.cljs"
+    ]
   },
   "repository": "github:berkeleytrue/lumo-todo",
   "author": "",
@@ -14,5 +24,8 @@
   "dependencies": {
     "lumo-cljs": "^1.8.0-beta",
     "react": "^16.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
   }
 }

@@ -10,7 +10,7 @@
   [{:keys [uri]}]
   (do
     (println "Request coming from uri: " uri)
-    (r/response "hello World")))
+    (r/response "Hello Berks")))
 
 (run handler
      {:port 3000})
