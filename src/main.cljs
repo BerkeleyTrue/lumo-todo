@@ -1,8 +1,7 @@
 (ns todo.main
   (:require
     [todo.ring.core :refer [run]]
-    [todo.ring.utils :as r]))
-    
+    [todo.ring.utils.response :as r]))
 
 (enable-console-print!)
 
