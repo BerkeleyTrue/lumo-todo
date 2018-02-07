@@ -22,10 +22,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lumo-cljs": "^1.8.0-beta",
     "react": "^16.2.0"
   },
   "devDependencies": {
+    "lumo-cljs": "^1.8.0-beta",
     "nodemon": "^1.14.12"
   }
 }
