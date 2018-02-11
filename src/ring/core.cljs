@@ -8,7 +8,7 @@
   [node-req]
   (let [socket (.-socket node-req)
         parsed-url (.parse url (.-url node-req))]
-     {
+    {
       :server-port (.-localPort socket)
       :server-name (.-localAddress socket)
       :remote-addr (.-remoteAddress socket)

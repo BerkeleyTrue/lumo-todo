@@ -2,7 +2,9 @@
 
 (b/watch
   "src"
-  {
-   :main 'todo.main
-   :output-to "out/main.js"
-   :target :nodejs})
+  { :main 'todo.main
+    :output-to "out/main.js"
+    :output-dir "out"
+    :target :nodejs
+    :source-map "out/main.js.map"})
+

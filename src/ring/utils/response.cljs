@@ -14,13 +14,17 @@
 (defn content-type
   "Add content type header to a resonse"
   [resp content-type]
-  (header "Content-Type" content-type))
+  (header resp "Content-Type" content-type))
 
 (defn redirect
   "Create a redirect resonse"
   ([url] (redirect url 302))
   ([url status]
    (header
-     { :status status :body ""}
+     {:status status :body ""}
      "Location"
      url)))
+
+(defn not-found
+  [body]
+  { :status 404 :body body})
