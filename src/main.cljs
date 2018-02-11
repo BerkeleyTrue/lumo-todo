@@ -2,7 +2,7 @@
   (:require
     [todo.ring.core :refer [run]]
     [todo.ring.utils.response :as r]
-    [todo.router.core :as ring :refer [GET ANY]]))
+    [todo.router.core :as ring :refer [GET ALL]]))
 
 (enable-console-print!)
 
@@ -17,7 +17,7 @@
         (do
           (println "home")
           (r/response "Hello Berks"))))
-    (ANY "*"
+    (ALL "*"
       (fn []
         (println "404")
         (r/not-found "404 Not Found"))))

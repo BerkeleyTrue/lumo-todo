@@ -50,7 +50,7 @@
         (if-let [match (path-to-match req)]
           (handler req))))))
 
-(defn ANY
+(defn ALL
   [path handler]
   (let [path-to-match (match-route path)]
     (fn [req]
