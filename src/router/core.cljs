@@ -25,11 +25,12 @@
       :else
         (fn [req]
           (let [uri (get-uri req)]
+            (println (:name (first route-keys)))
             (if-let [match (.exec route-regexp uri)]
-              {
-                :params (as-> route-keys v
-                            (map (fn [key] (:name key)) v)
-                            (zipmap v (rest match)))}))))))
+              (as-> route-keys v
+                (map #(:name %) v)
+                (map keyword v)
+                (zipmap v (rest match)))))))))
 
 (defn- apply-routes
   [request & handlers]
@@ -44,12 +45,13 @@
   (let [path-to-match (match-route path)]
     (fn [req]
       (if (= (:request-method req) :get)
-        (if-let [match (path-to-match req)]
+        (if-let [params (path-to-match req)]
+          (println params)
           (handler req))))))
 
 (defn ALL
   [path handler]
   (let [path-to-match (match-route path)]
     (fn [req]
-      (if-let [match (path-to-match req)]
+      (if-let [params (path-to-match req)]
         (handler req)))))
