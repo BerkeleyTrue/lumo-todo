@@ -16,7 +16,7 @@
   [path {:keys [end] :or {end true}}]
   (let [route-keys #js []
         route-regexp (path-to-regexp path route-keys)
-        route-keys (js->clj route-keys)
+        route-keys (js->clj route-keys :keywordize-keys true)
         fast-star (= path "*")
         fast-slash (and (= path "/") (not end))]
     (cond
