@@ -2,22 +2,25 @@
   (:require
     [todo.ring.core :refer [run]]
     [todo.ring.utils.response :as r]
-    [todo.router.core :as ring :refer [GET ALL]]))
+    [todo.router.core :as router]))
 
 (enable-console-print!)
 
 (run
-  (ring/combine-routes
-    (GET "/foo"
+  (router/combine-routes
+    (router/GET "/foo"
       (fn []
         (println "foo")
         (r/response "Hello Foo")))
-    (GET "/"
+    (router/POST "/:bar"
       (fn []
-        (do
-          (println "home")
-          (r/response "Hello Berks"))))
-    (ALL "*"
+        (println "post bar")
+        (r/response "Post Successful")))
+    (router/GET "/"
+      (fn []
+        (println "home")
+        (r/response "Hello Berks")))
+    (router/ALL "*"
       (fn []
         (println "404")
         (r/not-found "404 Not Found"))))

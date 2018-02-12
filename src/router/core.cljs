@@ -46,7 +46,14 @@
     (fn [req]
       (if (= (:request-method req) :get)
         (if-let [params (path-to-match req)]
-          (println params)
+          (handler req))))))
+
+(defn POST
+  [path handler]
+  (let [path-to-match (match-route path)]
+    (fn [req]
+      (if (= (:request-method req) :post)
+        (if-let [params (path-to-match req)]
           (handler req))))))
 
 (defn ALL
