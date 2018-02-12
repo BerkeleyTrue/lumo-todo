@@ -14,12 +14,12 @@
 
 (defn- match-route
   [path {:keys [end] :or {end true}}]
-  (let [
-        route-keys []
+  (let [route-keys #js []
         route-regexp (path-to-regexp path route-keys)
+        route-keys (js->clj route-keys)
         fast-star (= path "*")
         fast-slash (and (= path "/") (not end))]
-    (cond 
+    (cond
       (true? fast-slash) (constantly {:params {} :path ""})
       (true? fast-star) (fn [req] {:params (decode-param (get-uri req)) :path "/"})
       :else
@@ -27,9 +27,6 @@
           (let [uri (get-uri req)]
             (if-let [match (.exec route-regexp uri)]
               {
-                :fast-star fast-star
-                :fast-slash fast-slash
-                :match match
                 :params (as-> route-keys v
                             (map (fn [key] (:name key)) v)
                             (zipmap v (rest match)))}))))))
